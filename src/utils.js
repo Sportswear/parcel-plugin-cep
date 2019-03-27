@@ -51,7 +51,7 @@ function camelToSnake(str) {
 }
 
 function isTruthy(str) {
-  return typeof str === 'string' && (str === '1' || str.toLowerCase() === 'true')
+  return typeof str === 'string' && (str === '1' || str.toLowerCase() === 'true') || undefined
 }
 
 function getConfig(package) {
@@ -76,7 +76,9 @@ function getConfig(package) {
         }, {})
         : undefined,
       debugInProduction: isTruthy(process.env.DEBUG_IN_PRODUCTION),
-      startEvents: process.env.START_EVENTS.split(','),
+      startEvents: (process.env.START_EVENTS || '')
+        .split(',')
+        .filter(e => e.length > 0),
     },
     {
       bundleName: package.cep && package.cep.name,

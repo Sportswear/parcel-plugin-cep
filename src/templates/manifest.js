@@ -62,7 +62,7 @@ module.exports = function({
         <Lifecycle>
           <AutoVisible>true</AutoVisible>
           <StartOn>
-            ${startEvents.map(e => `<Event>${e}</Event>`)}
+            ${startEvents.map(e => `<Event>${e}</Event>`).join('\n           ')}
           </StartOn>
         </Lifecycle>
         <UI>
