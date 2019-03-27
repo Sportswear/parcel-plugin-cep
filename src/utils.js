@@ -76,6 +76,7 @@ function getConfig(package) {
         }, {})
         : undefined,
       debugInProduction: isTruthy(process.env.DEBUG_IN_PRODUCTION),
+      startEvents: process.env.START_EVENTS.split(','),
     },
     {
       bundleName: package.cep && package.cep.name,
@@ -90,6 +91,7 @@ function getConfig(package) {
       panelHeight: package.cep.panelHeight,
       debugPorts: package.cep.debugPorts,
       debugInProduction: package.cep.debugInProduction,
+      startEvents: package.cep.startEvents,
     },
     {
       bundleVersion: package.version,
@@ -115,7 +117,8 @@ function getConfig(package) {
         DRWV: 3010,
         MUST: 3011,
         KBRG: 3012,
-      }
+      },
+      startEvents: []
     }
   )
   return config
@@ -148,6 +151,7 @@ async function writeExtensionTemplates({
   panelWidth,
   panelHeight,
   debugInProduction,
+  startEvents,
 }) {
   const manifestContents = manifestTemplate({
     bundleName,
@@ -161,6 +165,7 @@ async function writeExtensionTemplates({
     iconDarkRollover,
     panelWidth,
     panelHeight,
+    startEvents,
   })
 
   await fs.ensureDir(path.join(out, 'CSXS'))

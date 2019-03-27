@@ -16,6 +16,7 @@ module.exports = function({
   iconRollover,
   iconDarkNormal,
   iconDarkRollover,
+  startEvents
 }) {
   var commandLineParams = cefParams.map(
     cefParam => `<Parameter>${cefParam}</Parameter>`
@@ -60,6 +61,9 @@ module.exports = function({
         </Resources>
         <Lifecycle>
           <AutoVisible>true</AutoVisible>
+          <StartOn>
+            ${startEvents.map(e => `<Event>${e}</Event>`)}
+          </StartOn>
         </Lifecycle>
         <UI>
           <Type>Panel</Type>

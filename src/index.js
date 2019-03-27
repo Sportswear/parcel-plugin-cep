@@ -61,6 +61,7 @@ module.exports = async bundler => {
         panelWidth: config.panelWidth,
         panelHeight: config.panelHeight,
         debugInProduction: config.debugInProduction,
+        startEvents: config.startEvents,
         out,
       })
       await symlinkExtension({ bundleId: config.bundleId, out })
